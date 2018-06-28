@@ -26,12 +26,12 @@ type DefaultStrategy struct {
 }
 
 func (d *DefaultStrategy) Action(ctx *Context) {
-	fmt.Printf("Action %s by Default", ctx.Name)
+	fmt.Printf("Action %s by Default\n", ctx.Name)
 }
 
 type VariedStrategy struct {
 }
 
 func (d *VariedStrategy) Action(ctx *Context) {
-	fmt.Printf("Action %s by Variation", ctx.Name)
+	fmt.Printf("Action %s by Variation\n", ctx.Name)
 }

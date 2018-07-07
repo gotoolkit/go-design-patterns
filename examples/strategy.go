@@ -5,9 +5,9 @@ import (
 )
 
 func main() {
-	ctx := strategy.NewContext("Paul", &strategy.DefaultStrategy{})
-	ctx.Action()
-
-	ctx = strategy.NewContext("Bob", &strategy.VariedStrategy{})
-	ctx.Action()
+	
+	ctx := strategy.New("Paul", nil)
+	ctx.Run()
+	
+	strategy.Start(&strategy.VariedStrategy{})
 }

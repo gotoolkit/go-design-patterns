@@ -3,35 +3,42 @@ package strategy
 import "fmt"
 
 type Context struct {
+	Strategy
 	Name     string
-	strategy Strategy
 }
 
-func NewContext(name string, strategy Strategy) *Context {
+func New(name string, s Strategy) *Context {
+	if s == nil {
+		s = &DefaultStrategy{}
+	}
 	return &Context{
+		Strategy: s,
 		Name:     name,
-		strategy: strategy,
 	}
 }
 
-func (ctx *Context) Action() {
-	ctx.strategy.Action(ctx)
+func Start(s Strategy) {
+	s.Action()
+}
+
+func (ctx *Context) Run() {
+	ctx.Action()
 }
 
 type Strategy interface {
-	Action(*Context)
+	Action()
 }
 
 type DefaultStrategy struct {
 }
 
-func (d *DefaultStrategy) Action(ctx *Context) {
-	fmt.Printf("Action %s by Default\n", ctx.Name)
+func (d *DefaultStrategy) Action() {
+	fmt.Println("Action by Default")
 }
 
 type VariedStrategy struct {
 }
 
-func (d *VariedStrategy) Action(ctx *Context) {
-	fmt.Printf("Action %s by Variation\n", ctx.Name)
+func (d *VariedStrategy) Action() {
+	fmt.Println("Action by Variation")
 }
